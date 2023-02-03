@@ -6,27 +6,28 @@
 # install node-red
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 
-# install pihole
-# TODO
+# config dhcpcd
+sudo cp ./dhcpcd.conf /etc/dhcpcd.conf
 
-# install unbound
-suod apt-get -y install unbound
-wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unbound/root.hints
-sudo cp ./unbound.cfg /etc/unbound/unbound.conf.d/pi-hole.conf
-echo "edns-packet-max=1232" | sudo tee /etc/dnsmasq.d/99-edns.conf
-sudo service unbound restart
-sudo apt purge openresolv
+# install dhcp
+sudo apt-get install -y isc-dhcp-server
+echo "INTERFACESv4=\"wlan0\"" | sudo tee /etc/default/isc-dhcp-server
+sudo cp ./dhcpd.conf /etc/dhcp/dhcpd.conf
+sudo systemctl start isc-dhcp-server
 
-# configure pihole to use unbound
-# TODO
+# install dns
+sudo apt install -y bind9
+sudo cp ./named.conf.options /etc/bind/named.conf.options
+sudo cp ./named.conf.local /etc/bind/named.conf.local
+sudo cp ./forward.local /etc/bind/forward.local
+sudo systemctl restart bind9.service
+
+# install access point
+sudo apt install -y hostapd
+sudo cp ./hostapd.conf /etc/hostapd/hostapd.conf
+sudo chmod 600 /etc/hostapd/hostapd.conf
 
 # install scoreboard
 ./start.sh
-
-# set up local access point
-# TODO
-
-# enbale DHCP and DNS in pihole
-# TODO
 
 sudo reboot

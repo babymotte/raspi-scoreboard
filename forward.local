@@ -1,0 +1,10 @@
+local. 1800  IN  SOA  ns1.local. mailbox.local. (
+                                                100   ; Seriennummer
+                                                300   ; Refresh Time
+                                                100   ; Retry Time
+                                                6000  ; Expire Time
+                                                600   ; negative Caching Zeit
+                                               )
+local.     1800  IN      NS      ns1.local.
+ns1        1800  IN      A       10.42.0.1
+scoreboard 1800  IN      A       10.42.0.1
