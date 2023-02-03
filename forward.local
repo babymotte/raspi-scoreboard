@@ -6,5 +6,5 @@ local. 1800  IN  SOA  ns1.local. mailbox.local. (
                                                 600   ; negative Caching Zeit
                                                )
 local.     1800  IN      NS      ns1.local.
-ns1        1800  IN      A       10.42.0.1
-scoreboard 1800  IN      A       10.42.0.1
+ns1        1800  IN      A       192.168.1.1
+scoreboard 1800  IN      A       192.168.1.1
