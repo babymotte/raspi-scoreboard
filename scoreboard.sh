@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo xinit -- -nocursor &
+sleep 20 && sudo xinit -- -nocursor

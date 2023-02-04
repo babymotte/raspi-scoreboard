@@ -61,4 +61,17 @@ sudo systemctl disable wpa_supplicant.service &&
 
 sudo cp ./xinitrc /root/.xinitrc
 
+echo "[Unit]
+Description=Score Board
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=$(pwd)/scoreboard.sh
+
+[Install]
+WantedBy=multi-user.target" | sudo tee /etc/systemd/system/scoreboard.service
+sudo systemctl daemon-reload
+sudo systemctl enable scoreboard.service
+
 sudo reboot
