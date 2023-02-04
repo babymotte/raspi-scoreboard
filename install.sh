@@ -27,6 +27,7 @@ curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/
     npm install node-red-dashboard &&
     npm install node-red-node-pi-gpio &&
     mkdir projects && cd projects && git clone https://github.com/babymotte/scoreboard-flow.git &&
+    sudo systemctl enable nodered &&
     cd "$DIR" || exit $?
 
 # install dhcp
