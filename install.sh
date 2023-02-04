@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt update && sudo apt -y full-upgrade && sudo apt install -y git && sudo apt autoremove || exit $?
+sudo apt update && sudo apt -y full-upgrade && sudo apt autoremove || exit $?
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh || exit $?
