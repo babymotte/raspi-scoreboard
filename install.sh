@@ -1,9 +1,14 @@
 #!/bin/bash
 
-sudo apt update && sudo apt -y full-upgrade --fix-missing && sudo apt autoremove || exit $?
+sudo apt update && sudo apt -y full-upgrade --fix-missing || exit $?
 
 # install docker
-curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh || exit $?
+curl -fsSL https://get.docker.com -o get-docker.sh &&
+    sudo sh get-docker.sh &&
+    rm get-docker.sh &&
+    sudo gpasswd -a gwoerch docker &&
+    sudo systemctl enable docker ||
+    exit $?
 
 # install node-red
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) || exit $?
@@ -38,6 +43,9 @@ sudo systemctl enable --now hostapd || exit $?
 
 # install scoreboard
 ./start.sh || exit $?
+
+# clean up
+sudo apt -y autoremove
 
 # static ip
 sudo cp ./wlan0.static /etc/network/interfaces.d/wlan0.conf || exit $?
