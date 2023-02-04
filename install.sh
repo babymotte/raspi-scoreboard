@@ -56,7 +56,9 @@ sudo apt install -y hostapd &&
 sudo apt -y autoremove
 
 # static ip
-sudo cp ./wlan0.conf /etc/network/interfaces.d/wlan0.conf || exit $?
+sudo systemctl disable wpa_supplicant.service &&
+    sudo systemctl disable dhcpcd.service &&
+    sudo cp ./wlan0.conf /etc/network/interfaces.d/wlan0.conf || exit $?
 
 echo htop | sudo tee /root/.xinitrc
 
