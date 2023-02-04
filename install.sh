@@ -60,7 +60,8 @@ sudo systemctl disable wpa_supplicant.service &&
     sudo cp ./wlan0.conf /etc/network/interfaces.d/wlan0.conf || exit $?
 
 # autostart
-sudo cp ./xinitrc /root/.xinitrc &&
+sudo systemctl disable lightdm &&
+    sudo cp ./xinitrc /root/.xinitrc &&
     echo "[Unit]
 Description=Score Board
 After=network.target
