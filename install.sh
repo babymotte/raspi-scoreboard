@@ -25,6 +25,9 @@ sudo systemctl restart bind9.service
 sudo apt install -y hostapd
 sudo cp ./hostapd.conf /etc/hostapd/hostapd.conf
 sudo chmod 600 /etc/hostapd/hostapd.conf
+sudo cp ./hostapd.default /etc/default/hostapd
+sudo systemctl unmask hostapd
+sudo systemctl enable --now hostapd
 
 # install scoreboard
 ./start.sh
