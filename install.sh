@@ -1,6 +1,14 @@
 #!/bin/bash
 
-sudo apt update && sudo apt -y full-upgrade --fix-missing || exit $?
+[[ ! -f $HOME/.firstrun ]] && {
+    echo "A full system update needs to be done before the installation can continue. Press ENTER to update the system now."
+    read SOMETHING
+    sudo apt update && sudo apt -y full-upgrade --fix-missing || exit $?
+    touch $HOME/.firstrun
+    echo "System updated successfully. System will now reboot. Once back up, run the install script again. Press ENTER to continue."
+    read SOMETHING
+    sudo reboot
+}
 
 # install docker
 curl -fsSL https://get.docker.com -o get-docker.sh &&
