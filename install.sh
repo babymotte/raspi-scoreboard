@@ -7,6 +7,13 @@ curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && r
 
 # install node-red
 bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+cd $HOME/.node-red &&
+    npm install @babymotte/node-red-worterbuch &&
+    npm install node-red-dashboard &&
+    npm install node-red-node-pi-gpio &&
+    cd projects && git clone https://github.com/babymotte/scoreboard-flow.git &&
+    cd
+sudo systemctl start node-red
 
 # install dhcp
 sudo apt-get install -y isc-dhcp-server
