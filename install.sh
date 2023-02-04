@@ -44,7 +44,6 @@ sudo apt install -y bind9 &&
 # install access point
 sudo apt install -y hostapd &&
     sudo cp ./hostapd.conf /etc/hostapd/hostapd.conf &&
-    sudo chmod 600 /etc/hostapd/hostapd.conf &&
     sudo cp ./hostapd.default /etc/default/hostapd &&
     sudo systemctl unmask hostapd &&
     sudo systemctl enable hostapd || exit $?
