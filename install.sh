@@ -59,6 +59,7 @@ sudo systemctl disable wpa_supplicant.service &&
     sudo systemctl disable dhcpcd.service &&
     sudo cp ./wlan0.conf /etc/network/interfaces.d/wlan0.conf || exit $?
 
+# autostart
 sudo cp ./xinitrc /root/.xinitrc
 
 echo "[Unit]
@@ -74,4 +75,5 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/scoreboard.service
 sudo systemctl daemon-reload
 sudo systemctl enable scoreboard.service
 
+# done
 sudo reboot
