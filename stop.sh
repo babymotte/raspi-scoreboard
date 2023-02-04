@@ -1,5 +1,5 @@
 #!/bin/bash
 echo "Stopping container …"
-docker stop scoreboard
+sudo docker stop scoreboard
 echo "Deleting container …"
-docker container rm scoreboard
+sudo docker container rm scoreboard
