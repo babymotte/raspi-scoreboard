@@ -58,4 +58,6 @@ sudo apt -y autoremove
 # static ip
 sudo cp ./wlan0.conf /etc/network/interfaces.d/wlan0.conf || exit $?
 
+echo htop | sudo tee /root/.xinitrc
+
 sudo reboot
